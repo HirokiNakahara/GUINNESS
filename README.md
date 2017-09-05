@@ -42,6 +42,7 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
 
  The GUINNESS introduction and BCNN implementation on an FPGA  
  guinness_tutorial1.pdf (located on the same folder)
+ or download from <https://www.dropbox.com/s/fyskw81ua1mqtze/guinness_tutorial1.pdf?dl=0>
 
 ### 5. On-going works
  I'm developing extend versions of the binarized CNN applications.
