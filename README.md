@@ -9,16 +9,16 @@ This GUI based framework includes both a training on a GPU, and a bitstream gene
 
 *1. Requirements:*
 
-Ubuntu 14.04 or 16.04
-Python 2.7.6+
-CUDA 8.0 (+GPU), not neessary to install a cuDNN library
-Chainer 1.23.0 or 1.24.0
+Ubuntu 14.04 or 16.04  
+Python 2.7.6+  
+CUDA 8.0 (+GPU), not neessary to install a cuDNN library  
+Chainer 1.23.0 or 1.24.0  
 
-SDSoC 2016.4 (or 2017.1)
-FPGA board: Xilinx ZC702, ZCU102, Digilent Zedboard, Zybo
-(In the near future, I will support the PYNQ board)
+SDSoC 2016.4 (or 2017.1)  
+FPGA board: Xilinx ZC702, ZCU102, Digilent Zedboard, Zybo  
+(In the near future, I will support the PYNQ board)  
 
-PyQt4, matplotlib, python-opencv2, numpy, scipy, 
+PyQt4, matplotlib, python-opencv2, numpy, scipy,   
 
 *2. Setup Libraries*
 
@@ -40,24 +40,26 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
 
  Read a following document.
 
- The GUINNESS introduction and BCNN implementation on an FPGA
+ The GUINNESS introduction and BCNN implementation on an FPGA  
  guinness_tutorial1.pdf (located on the same folder)
 
 *5. On going works*
  I'm developing extend versions of the binarized CNN applications.
  
- High performance image recognition (fully pipelined version)
+ High performance image recognition (fully pipelined version)  
 
- Object detector on a low-cost FPGA
+ Object detector on a low-cost FPGA  
 
 *6. Acknowledgements*
  This work is based on following projects:
 
- Chainer binarized neural network by Daisuke Okanohara
+ Chainer binarized neural network by Daisuke Okanohara  
  https://github.com/hillbig/binary_net
 
- Various CNN models including Deep Residual Networks (ResNet) 
-  for CIFAR10 with Chainer by mitmul
+ Various CNN models including Deep Residual Networks (ResNet)   
+  for CIFAR10 with Chainer by mitmul  
  https://github.com/mitmul/chainer-cifar10
 
- Also, this research is supported in part by the Grants in Aid for Scientistic Research of JSPS, and an Accelerated Innovation Research Initiative Turning Top Science and Ideas into High-Impact Values program~(ACCEL) of JST.
+ Also, this research is supported in part by the Grants in Aid for Scientistic Research of JSPS,  
+and an Accelerated Innovation Research Initiative Turning Top Science and Ideas into High-Impact  
+Values program~(ACCEL) of JST.
