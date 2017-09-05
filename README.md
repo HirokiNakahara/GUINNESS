@@ -7,7 +7,7 @@ This GUI based framework includes both a training on a GPU, and a bitstream gene
 [Nakahara IPDPSW2017] H. Yonekawa and H. Nakahara, "On-Chip Memory Based Binarized Convolutional Deep Neural Network Applying Batch Normalization Free Technique on an FPGA," IPDPS Workshops, 2017, pp. 98-105.  
 [Nakahara FPL2017] H. Nakahara et al., "A Fully Connected Layer Elimination for a Binarized Convolutional Neural Network on an FPGA", FPL, 2017, (to appear).
 
-## 1. Requirements:
+### 1. Requirements:
 
 Ubuntu 14.04 or 16.04  
 Python 2.7.6+  
@@ -20,7 +20,7 @@ FPGA board: Xilinx ZC702, ZCU102, Digilent Zedboard, Zybo
 
 PyQt4, matplotlib, python-opencv2, numpy, scipy,   
 
-## 2. Setup Libraries
+### 2. Setup Libraries
 
  Install the following python libraries:
 
@@ -32,25 +32,25 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
 
  sudo apt-get install python-qt4 pyqt4-dev-tools
 
-## 3. Run GUINNESS
+### 3. Run GUINNESS
 
  $ python guinness.py
 
-## 4. Tutorial
+### 4. Tutorial
 
  Read a following document.
 
  The GUINNESS introduction and BCNN implementation on an FPGA  
  guinness_tutorial1.pdf (located on the same folder)
 
-## 5. On-going works
+### 5. On-going works
  I'm developing extend versions of the binarized CNN applications.
  
  High performance image recognition (fully pipelined version)  
 
  Object detector on a low-cost FPGA  
 
-## 6. Acknowledgements
+### 6. Acknowledgements
  This work is based on following projects:
 
  Chainer binarized neural network by Daisuke Okanohara  
