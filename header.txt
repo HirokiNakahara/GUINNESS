@@ -1,0 +1,24 @@
+import math
+import numpy as np
+import six
+import chainer
+from chainer import cuda
+from chainer import functions as F
+from chainer import links as L
+from chainer import initializers
+
+import sys
+sys.path.append('./')
+import link_binary_linear as BL
+import bst
+import link_binary_conv2d as BC
+import link_integer_conv2d as IC
+from function_binary_conv2d import func_convolution_2d
+from function_integer_conv2d import func_convolution_2d
+
+# for debuging of the batch normalization functions
+import link_batch_normalization as LBN
+
+class CNN(chainer.Chain):
+    def __init__(self):
+        super(CNN, self).__init__(

@@ -1,0 +1,3 @@
+./class3_images/airplane800 airplane
+./class3_images/pets800 pets
+./class3_images/car800 car
