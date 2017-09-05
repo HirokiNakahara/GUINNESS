@@ -61,6 +61,7 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
   for CIFAR10 with Chainer by mitmul  
  https://github.com/mitmul/chainer-cifar10
 
- Also, this research is supported in part by the Grants in Aid for Scientistic Research of JSPS,  
+ This research is supported in part by the Grants in Aid for Scientistic Research of JSPS,  
 and an Accelerated Innovation Research Initiative Turning Top Science and Ideas into High-Impact  
-Values program(ACCEL) of JST.
+Values program(ACCEL) of JST. Also, thanks to the Xilinx University Program (XUP), Intel University Program,
+ and the NVidia Corp.'s support.
