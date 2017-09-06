@@ -28,7 +28,7 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
 
  sudo pip install chainer==1.24.0
  
- Install PyQt4 (not PyQt5!)
+ PyQt4 (not PyQt5!)
 
  sudo apt-get install python-qt4 pyqt4-dev-tools
 
