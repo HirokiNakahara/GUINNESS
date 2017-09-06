@@ -1,6 +1,4 @@
-# GUINNESS
-
-GUINNESS: A GUI based binarized Neural NEtwork SyntheSizer toward an FPGA 
+# GUINNESS: A GUI based binarized Neural NEtwork SyntheSizer toward an FPGA
 
 This GUI based framework includes both a training on a GPU, and a bitstream generation for an FPGA using the Xilinx Inc. SDSoC. This tool uses the Chainer deep learning framework to train a binarized CNN. Also, it uses optimization techniques for an FPGA implementation. Details are shown in following papers:
 
