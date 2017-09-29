@@ -100,25 +100,25 @@ int main( int argc, char *argv[])
 
     printf("[INFO] IPADR=%s PORT=%d\n", ipadr, portnum);
 
-    /* ソケットの作成 */
+    /* make a socket */
     sock = socket(AF_INET, SOCK_STREAM, 0);
-    /* 接続先指定用構造体の準備 */
+    /* set parameters */
     addr.sin_family = AF_INET;
     addr.sin_port = htons(portnum); //10050
     addr.sin_addr.s_addr = inet_addr(ipadr); //"192.168.2.100"
 
-    /* サーバに接続 */
+    /* connect a server (host PC) */
     connect(sock, (struct sockaddr*)&addr, sizeof(addr));
 
     // main loop -------------------------------------------------------
     while(1){
         // receive data
-        printf("Receive data\n");
+        // printf("Receive data\n");
         memset(buf, 0, sizeof(buf));
         data = read(sock, buf, sizeof(buf));
 
         // set pixel
-        printf("Set Pixel");
+        // printf("Set Pixel");
         for( y = 0; y < (IMGSIZ); y++){
             for( x = 0; x < (IMGSIZ); x++){
                 ap_int<64>tmp = 0;
@@ -130,15 +130,15 @@ int main( int argc, char *argv[])
                 t_tmp_img[ y * (IMGSIZ) + x] = tmp;
             }
         }
-        printf("OK\n");
+        // printf("OK\n");
 
-        printf("Inference...\n");
+        // printf("Inference...\n");
         BinCNN( t_bin_convW, t_BNFb, t_tmp_img, fc_result, 0);
-        printf("OK\n");
+        // printf("OK\n");
 
-        printf("Result\n");
-        for( i = 0; i < (OUT_DENSE_SIZ); i++)printf("%5d ", fc_result[i]);
-        printf("\n");
+        // printf("Result\n");
+        // for( i = 0; i < (OUT_DENSE_SIZ); i++)printf("%5d ", fc_result[i]);
+        // printf("\n");
 
         // send data to server
         double softmax[(OUT_DENSE_SIZ)];
@@ -151,10 +151,10 @@ int main( int argc, char *argv[])
             softmax[i] = (double)exp((double)fc_result[i]) / total_softmax;
             buf[i] = (char)(softmax[i] * 100.0);
 
-            printf("i=%d buf=%d softmax=%f\n", i, buf[i], softmax[i]);
+            // printf("i=%d buf=%d softmax=%f\n", i, buf[i], softmax[i]);
         }
 
-        printf("Send Data");
+        // printf("Send Data");
         write( sock, buf, (OUT_DENSE_SIZ));
     }
 
