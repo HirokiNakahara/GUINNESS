@@ -143,12 +143,19 @@ int main( int argc, char *argv[])
         // send data to server
         double softmax[(OUT_DENSE_SIZ)];
         double total_softmax = 0.0;
+        double max_val = -9999.0;
 
         for( i = 0; i < (OUT_DENSE_SIZ); i++){
-            total_softmax += exp( (double)fc_result[i]);
+            if( (double)fc_result[i] > max_val)
+            	max_val = fc_result[i];
         }
+
         for( i = 0; i < (OUT_DENSE_SIZ); i++){
-            softmax[i] = (double)exp((double)fc_result[i]) / total_softmax;
+            total_softmax += exp( (double)(fc_result[i]) / max_val);
+        }
+
+	for( i = 0; i < (OUT_DENSE_SIZ); i++){
+            softmax[i] = (double)exp((double)fc_result[i] / max_val) / total_softmax;
             buf[i] = (char)(softmax[i] * 100.0);
 
             // printf("i=%d buf=%d softmax=%f\n", i, buf[i], softmax[i]);
