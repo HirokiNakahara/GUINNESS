@@ -82,6 +82,9 @@ void bin_conv2d_pipeline(
 
 	static ap_int<(MAX_BCONV_WIDTH)> shift_reg1[((IMGSIZ)+2)*3];
 #pragma HLS ARRAY_PARTITION variable=shift_reg1 complete dim=1
+	static ap_uint<1> padding_shift_reg[((IMGSIZ)+2)*3];
+#pragma HLS ARRAY_PARTITION variable=padding_shift_reg complete dim=1
+
 	int cnt = 0;
 
 	ix = iy = ox = oy = w_flag = 0;
@@ -94,12 +97,15 @@ void bin_conv2d_pipeline(
     		shift_reg1[ i] = shift_reg1[ i + 1];
     	}
     	ap_int<(MAX_BCONV_WIDTH)> din;
+    	ap_uint<1> padding;
     	if( (ix > 0 && ix <= size) && (iy > 0 && iy <= size)){
-			din = (ap_int<(MAX_BCONV_WIDTH)>)fmap[iy-1][ix-1];
+		din = (ap_int<(MAX_BCONV_WIDTH)>)fmap[iy-1][ix-1];
+		padding = 0;
     	} else {
     		ap_int<(MAX_BCONV_WIDTH)> allone;
     		allone = ~0;
     		din = allone;
+		padding = 1;
     	}
     	switch( layer){
 (BCONV_REG_SELECT)
@@ -134,6 +140,7 @@ void bin_conv2d_pipeline(
             		ap_uint<(MAX_BCONV_WIDTH)> bxor;
                     ap_uint<(MAX_BCONV_WIDTH)> mask;
                     ap_uint<(MAX_BCONV_WIDTH)> allzero = 0;
+                    ap_uint<1>is_padding;
 
             		switch( layer){
 (BCONV_WEIGHT_SELECT)
@@ -141,12 +148,13 @@ void bin_conv2d_pipeline(
 
                     (BIN_XOR_MAC)
 
-            		tmp2 = 0;
+			tmp2 = 0;
                     ONES_COUNT: for( i = 0; i < (MAX_BCONV_WIDTH); i++){
                         tmp2 += (((bxor >> i) & 0x1) == 1) ? 1 : 0;
                     }
-                    tmp += (n_in - tmp2 * 2);
-            	}
+                    if( is_padding == 0)
+                        tmp += (n_in - tmp2 * 2);
+		}
             }
 
             if( w_flag > 0 && w_flag <= size){
