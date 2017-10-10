@@ -141,12 +141,16 @@ for i in range(len(initial_options)):
 	if initial_options[i] == 0:
 		conv_idx += 1
 	if initial_options[i] == 1:
-		bconv_reg_select += '        case  %d: shift_reg1[ 2 * (%d+2) + 3 - 1] = din; break;\n' % (conv_idx,int(infmap_siz[i]))
+		bconv_reg_select += '        case  %d:\n' % (conv_idx)
+		bconv_reg_select += '        shift_reg1[ 2 * (%d+2) + 3 - 1] = din;\n' % (int(infmap_siz[i]))
+		bconv_reg_select += '        padding_shift_reg[ 2 * (%d+2) + 3 - 1] = padding; break;\n' % (int(infmap_siz[i]))
+		bconv_reg_select += '        break;\n'
 
 		bconv_weight_select += '                        case %d:\n' % conv_idx
 		bconv_weight_select += '                            bx = shift_reg1[ky * (%d+2) + kx];\n' % int(infmap_siz[i])
 		bconv_weight_select += '                            bw = (ap_uint<%d>)conv%dW[ofeat][ky*3+kx];\n' % (max_bconv_width,conv_idx)
 		bconv_weight_select += '                            mask = ~(~allzero << %d);\n' % int(n_in_fmaps[i])
+		bconv_weight_select += '                            is_padding = padding_shift_reg[ky * (%d+2) + kx];\n' % int(infmap_siz[i])
 		bconv_weight_select += '                        break;\n'
 
 		bconv_bias_select += '            	case %d:  bias = b%d_BNFb[ofeat]; break;\n' % (conv_idx,conv_idx)
