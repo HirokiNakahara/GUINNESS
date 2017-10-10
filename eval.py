@@ -89,16 +89,6 @@ if __name__ == '__main__':
     n_tests = 10
     n_acc   = 0
 
-    # open paramter file for normalization
-    fname = args.dataset + '_mean.txt'
-    with open(fname, 'rb') as f:
-        mean_value = f.readlines()
-
-    fname = args.dataset + '_std.txt'
-    with open(fname, 'rb') as f:
-        std_value = f.readlines()
-
-
     # perform test
     for idx in range(0,n_tests):
         image = test_x
