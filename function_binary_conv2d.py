@@ -79,7 +79,8 @@ class BinaryConv2DFunction(function.Function):
             x, kh, kw, self.sy, self.sx, self.ph, self.pw,
             cover_all=self.cover_all)
 
-        Xb = numpy.where(self.col>=0,1,-1).astype(x.dtype, copy=False)
+        Xb = numpy.where(self.col>0,1,self.col).astype(x.dtype, copy=False)
+        Xb = numpy.where(self.col<0,-1,Xb).astype(x.dtype, copy=False)
         Wb = numpy.where(W>=0,1,-1).astype(W.dtype, copy=False)
         y = numpy.tensordot(
             Xb, Wb, ((1, 2, 3), (1, 2, 3))).astype(x.dtype, copy=False)
