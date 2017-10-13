@@ -431,7 +431,7 @@ void kernel(
 #pragma SDS data zero_copy(t_BNFb[0:(BIAS_SIZ)])
 #pragma SDS data zero_copy(t_in_img[0:(IMGSIZ)*(IMGSIZ)])
 #endif
-void BinCNN(
+int BinCNN(
 #ifdef __SDSCC__
         int *t_bin_convW,
         int *t_BNFb,
@@ -447,10 +447,20 @@ void BinCNN(
 #endif
 )
 {
+/*
+#pragma HLS INTERFACE s_axilite register port=t_bin_convW bundle=slv0
+#pragma HLS INTERFACE s_axilite register port=t_BNFb bundle=slv0
+#pragma HLS INTERFACE s_axilite register port=t_in_img bundle=slv0
+#pragma HLS INTERFACE s_axilite register port=fc_result bundle=slv0
+#pragma HLS INTERFACE s_axilite register port=init bundle=slv0
+#pragma HLS INTERFACE s_axilite register port=return bundle=slv0
+*/
 	if( init == 1)
 		setup( t_bin_convW, t_BNFb);
 	else
 		kernel( t_in_img, fc_result);
+	
+	return 0;
 }
 
 // ------------------------------------------------------------------
