@@ -61,7 +61,9 @@ PyQt4, matplotlib, OpenCV3, numpy, scipy,
  This is a just trial version. I have already developed the extend version including following ones.
  
  Supporing the Intel's FPGA (DE5-net, DE10-nano, and DE5a-net boards with the Intel SDK for OpenCL)
+ 
  High performance image recognition (fully pipelined and SIMD CNNs)  
+ 
  Object detector on a low-cost FPGA (e.g., pedestrian detection)
 
  If you are interesting the extended one, please, contact me.
