@@ -1,22 +1,27 @@
-# GUINNESS: A GUI based binarized Neural NEtwork SyntheSizer toward an FPGA
+# GUINNESS: A GUI based binarized Neural NEtwork SyntheSizer toward an FPGA (Trial version)
 
 This GUI based framework includes both a training on a GPU, and a bitstream generation for an FPGA using the Xilinx Inc. SDSoC. This tool uses the Chainer deep learning framework to train a binarized CNN. Also, it uses optimization techniques for an FPGA implementation. Details are shown in following papers:
 
 [Nakahara IPDPSW2017] H. Yonekawa and H. Nakahara, "On-Chip Memory Based Binarized Convolutional Deep Neural Network Applying Batch Normalization Free Technique on an FPGA," IPDPS Workshops, 2017, pp. 98-105.  
-[Nakahara FPL2017] H. Nakahara et al., "A Fully Connected Layer Elimination for a Binarized Convolutional Neural Network on an FPGA", FPL, 2017, (to appear).
+[Nakahara FPL2017] H. Nakahara et al., "A Fully Connected Layer Elimination for a Binarized Convolutional Neural Network on an FPGA", FPL, 2017, pp. 1-4.
+[Nakahara FPL2017 Demo] H. Nakahara et al., "A demonstration of the GUINNESS: A GUI based neural NEtwork SyntheSizer for an FPGA", FPL, 2017, page 1.
 
 ### 1. Requirements:
 
-Ubuntu 14.04 or 16.04  
-Python 2.7.6+  
-CUDA 8.0 (+GPU), not neessary to install a cuDNN library  
-Chainer 1.23.0 or 1.24.0  
+Ubuntu 16.04 LTS (14.04 LTS is also supported)  
+Python 3.5.1
+(Note that, my recommendation is to install by Anaconda 4.1.0 (64-it)+Pyenv,
+ for Japanese Only, I prepared the Python 3.5 by following http://blog.algolab.jp/post/2016/08/21/pyenv-anaconda-ubuntu/)
+CUDA 8.0 (+GPU)
+(Note that, CUDA 9.0 is also supported)
+Chainer 1.24.0 + CuPy 2.0
 
-SDSoC 2016.4 (or 2017.1)  
-FPGA board: Xilinx ZC702, ZCU102, Digilent Zedboard, Zybo  
-(In the near future, I will support the PYNQ board)  
+Xilinx Inc. SDSoC 2017.2 (2016.4 is also supported for the low-end FPGAs only)
+FPGA board: Xilinx ZC702, ZC706, ZCU102, Digilent Zedboard, Zybo  
+(Soon, I will support Intel's FPGAs!, and the PYNQ board)  
 
-PyQt4, matplotlib, python-opencv2, numpy, scipy,   
+PyQt4, matplotlib, OpenCV3, numpy, scipy,
+(Above libraries are installed by the Anaconda, however, you must individually install the OpenCV by "conda install -y -c menpo opencv3")
 
 ### 2. Setup Libraries
 
@@ -26,9 +31,13 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
 
  sudo pip install chainer==1.24.0
  
- PyQt4 (not PyQt5!)
+ PyQt4 (not PyQt5!), it is already installed by the Anaconda
 
  sudo apt-get install python-qt4 pyqt4-dev-tools
+
+ OpenCV3
+ 
+ conda install -y -c menpo opencv3
 
 ### 3. Run GUINNESS
 
@@ -36,18 +45,20 @@ PyQt4, matplotlib, python-opencv2, numpy, scipy,
 
 ### 4. Tutorial
 
- Read a following document.
+ Read a following document (25/Oct./2017 Updated!!)
 
  The GUINNESS introduction and BCNN implementation on an FPGA  
  guinness_tutorial1.pdf (located on the same folder)
  or download from <https://www.dropbox.com/s/fyskw81ua1mqtze/guinness_tutorial1.pdf?dl=0>
 
 ### 5. On-going works
- I'm developing extend versions of the binarized CNN applications.
+ This is a just trial version. I have already developed the extend version including following ones.
  
- High performance image recognition (fully pipelined version)  
+ Supporing the Intel's FPGA (DE5-net, DE10-nano, and DE5a-net boards with the Intel SDK for OpenCL)
+ High performance image recognition (fully pipelined and SIMD CNNs)  
+ Object detector on a low-cost FPGA (e.g., pedestrian detection)
 
- Object detector on a low-cost FPGA  
+ If you are interesting the extended one, please, contact me.
 
 ### 6. Acknowledgements
  This work is based on following projects:
