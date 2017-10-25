@@ -95,7 +95,6 @@ void bin_conv2d_pipeline(
     	SHIFT_REG: for( i = 0; i < 2 * ((IMGSIZ)+2) + 3; i++){
 #pragma HLS UNROLL
     		shift_reg1[ i] = shift_reg1[ i + 1];
-    		padding_shift_reg[ i] = padding_shift_reg[ i + 1];
     	}
     	ap_int<(MAX_BCONV_WIDTH)> din;
     	ap_uint<1> padding;
@@ -431,7 +430,7 @@ void kernel(
 #pragma SDS data zero_copy(t_BNFb[0:(BIAS_SIZ)])
 #pragma SDS data zero_copy(t_in_img[0:(IMGSIZ)*(IMGSIZ)])
 #endif
-int BinCNN(
+void BinCNN(
 #ifdef __SDSCC__
         int *t_bin_convW,
         int *t_BNFb,
@@ -459,8 +458,6 @@ int BinCNN(
 		setup( t_bin_convW, t_BNFb);
 	else
 		kernel( t_in_img, fc_result);
-	
-	return 0;
 }
 
 // ------------------------------------------------------------------

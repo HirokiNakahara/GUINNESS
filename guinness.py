@@ -858,19 +858,19 @@ class Layout(QtGui.QWidget):
             
             if index == 0:
                 fsiz = img_siz
-                tbl_item = QtGui.QTableWidgetItem(str(fsiz))
+                tbl_item = QtGui.QTableWidgetItem(str(int(fsiz)))
                 self.table.setItem(index,3,tbl_item)
                 #fsiz = int(itm3.text())
             elif itm0.currentText() == 'Conv(Int)':
-                tbl_item = QtGui.QTableWidgetItem(str(fsiz))
+                tbl_item = QtGui.QTableWidgetItem(str(int(fsiz)))
                 self.table.setItem(index,3,tbl_item)
 
             elif itm0.currentText() == 'Conv(Bin)':
-                tbl_item = QtGui.QTableWidgetItem(str(fsiz))
+                tbl_item = QtGui.QTableWidgetItem(str(int(fsiz)))
                 self.table.setItem(index,3,tbl_item)
 
             elif itm0.currentText() == 'Max Pool':
-                tbl_item = QtGui.QTableWidgetItem(str(fsiz))
+                tbl_item = QtGui.QTableWidgetItem(str(int(fsiz)))
                 self.table.setItem(index,3,tbl_item)
 
                 fsiz = fsiz / 2
@@ -878,7 +878,7 @@ class Layout(QtGui.QWidget):
                     fsiz = 1
 
             elif itm0.currentText() == 'Ave Pool':
-                tbl_item = QtGui.QTableWidgetItem(str(fsiz))
+                tbl_item = QtGui.QTableWidgetItem(str(int(fsiz)))
                 self.table.setItem(index,3,tbl_item)
 
                 fsiz = fsiz / 2

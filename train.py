@@ -18,7 +18,8 @@
 # -----------------------------------------------------------------------
 
 import argparse
-import cPickle as pickle
+#import cPickle as pickle # python 2.7
+import _pickle as pickle # python 3.5
 import numpy as np
 import os
 import chainer
@@ -49,7 +50,7 @@ if __name__ == '__main__':
                         help='Training iteration')
     parser.add_argument('--save_iter', type=int, default=0,
                         help='Iteration interval to save model parameter file.')
-    parser.add_argument('--lr_decay_iter', type=str, default='100',
+    parser.add_argument('--lr_decay_iter', type=int, default=100,
                         help='Iteration interval to decay learning rate')
     parser.add_argument('--weight_decay', type=float, default=0.0001,
                         help='Weight decay')
@@ -80,7 +81,7 @@ if __name__ == '__main__':
     np.random.seed(args.seed)
     
     log_file_path = '{}_log.csv'.format(args.prefix)
-    lr_decay_iter = map(int, args.lr_decay_iter.split(','))
+#    lr_decay_iter = map(int, args.lr_decay_iter.split(','))
 
     if args.prefix is None:
         model_prefix = '{}_{}'.format(args.model, args.optimizer)
@@ -178,7 +179,10 @@ if __name__ == '__main__':
         # prevent divergence when using identity mapping model
         if args.model == 'identity_mapping' and epoch < 9:
             o.lr = 0.01 + 0.01 * (epoch + 1)
-        if len(lr_decay_iter) == 1 and (epoch + 1) % lr_decay_iter[0] == 0 or epoch + 1 in lr_decay_iter:
+#        if len(lr_decay_iter) == 1 and (epoch + 1) % lr_decay_iter[0] == 0 or epoch + 1 in lr_decay_iter:
+        # Note, "lr_decay_iter" should be a list object to store a training schedule,
+        # However, to keep up with the Python3.5, I changed to an integer value...
+        if (epoch + 1) % args.lr_decay_iter == 0 and epoch > 1:
             if hasattr(optimizer, 'alpha'):
                 o.alpha *= 0.1
             else:

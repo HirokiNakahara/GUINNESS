@@ -14,7 +14,8 @@ from PIL import Image
 import numpy as np
 import glob
 import cv2
-import cPickle as pickle
+#import cPickle as pickle # python 2.7
+import _pickle as pickle # python 3.5
 import matplotlib.pyplot as plt
 import argparse
 import random
@@ -126,11 +127,11 @@ for pathAndLabel in allData:
 
 					if h > w:
 						dst_img = np.zeros((h,h,3)).astype(np.uint8) #* 128
-						d = (h-w)/2
+						d = int((h-w)/2)
 						dst_img[0:h,d:d+w] = org_img[:,:]
 					else:
 						dst_img = np.zeros((w,w,3)).astype(np.uint8) #* 128
-						d = (w-h)/2
+						d = int((w-h)/2)
 						dst_img[d:d+h,0:w] = org_img[:,:]
 
 					org_img = dst_img

@@ -143,7 +143,7 @@ for i in range(len(initial_options)):
 	if initial_options[i] == 1:
 		bconv_reg_select += '        case  %d:\n' % (conv_idx)
 		bconv_reg_select += '        shift_reg1[ 2 * (%d+2) + 3 - 1] = din;\n' % (int(infmap_siz[i]))
-		bconv_reg_select += '        padding_shift_reg[ 2 * (%d+2) + 3 - 1] = padding;\n' % (int(infmap_siz[i]))
+		bconv_reg_select += '        padding_shift_reg[ 2 * (%d+2) + 3 - 1] = padding; break;\n' % (int(infmap_siz[i]))
 		bconv_reg_select += '        break;\n'
 
 		bconv_weight_select += '                        case %d:\n' % conv_idx
