@@ -55,7 +55,7 @@ PyQt4, matplotlib, OpenCV3, numpy, scipy,
 
  The GUINNESS introduction and BCNN implementation on an FPGA  
  guinness_tutorial1.pdf (located on the same folder)
- or download from <https://www.dropbox.com/s/fyskw81ua1mqtze/guinness_tutorial1.pdf?dl=0>
+ or download from <https://www.dropbox.com/s/oe6gptgyi4y92el/guinness_tutorial1_v2.pdf?dl=0>
 
 ### 5. On-going works
  This is a just trial version. I have already developed the extend version including following ones.
