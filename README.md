@@ -9,14 +9,18 @@ This GUI based framework includes both a training on a GPU, and a bitstream gene
 ### 1. Requirements:
 
 Ubuntu 16.04 LTS (14.04 LTS is also supported)  
+
 Python 3.5.1
 (Note that, my recommendation is to install by Anaconda 4.1.0 (64-it)+Pyenv,
  for Japanese Only, I prepared the Python 3.5 by following http://blog.algolab.jp/post/2016/08/21/pyenv-anaconda-ubuntu/)
+
 CUDA 8.0 (+GPU)
 (Note that, CUDA 9.0 is also supported)
+
 Chainer 1.24.0 + CuPy 2.0
 
 Xilinx Inc. SDSoC 2017.2 (2016.4 is also supported for the low-end FPGAs only)
+
 FPGA board: Xilinx ZC702, ZC706, ZCU102, Digilent Zedboard, Zybo  
 (Soon, I will support Intel's FPGAs!, and the PYNQ board)  
 
