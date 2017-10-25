@@ -53,9 +53,14 @@ PyQt4, matplotlib, OpenCV3, numpy, scipy,
 
  Read a following document (25/Oct./2017 Updated!!)
 
- The GUINNESS introduction and BCNN implementation on an FPGA  
- guinness_tutorial1.pdf (located on the same folder)
- or download from <https://www.dropbox.com/s/oe6gptgyi4y92el/guinness_tutorial1_v2.pdf?dl=0>
+ 1 The GUINNESS introduction and BCNN implementation on an FPGA  
+ guinness_tutorial1_v2.pdf <https://www.dropbox.com/s/oe6gptgyi4y92el/guinness_tutorial1_v2.pdf?dl=0>
+
+ 2 The GUINNESS for the Intel FPGAs (Soon, will be uploaded)
+ 
+ 3 Pedestrian detection (Under preparing)
+
+ 4 Make a custom IP core for your own FPGA board (Under preparing) 
 
 ### 5. On-going works
  This is a just trial version. I have already developed the extend version including following ones.
