@@ -66,7 +66,7 @@ for layer_type, cnt in counter.items():
 		for i in range(len(initial_options)):
 			if initial_options[i] == 0:
 				def_cnn_layer += '            case %d:\n' % i
-		def_cnn_layer += '            int_conv2d_layer<bit_64, bit_%d, 64, %d, %d, %d>\n            ( in_img, fb_tmp, conv0W, b0_BNFb);\n            break;\n' % (max_bconv_width,max_bconv_width,int(infmap_siz[0]),int(infmap_siz[0]))
+		def_cnn_layer += '            int_conv2d_layer<bit_64, bit_%d, 64, %d, %d, %d>\n            ( in_img, fb_tmp, conv0W, b0_BNFb);\n            break;\n' % (max_bconv_width,int(n_ou_fmaps[0]),int(infmap_siz[0]),int(infmap_siz[0]))
 
 	elif layer_type == 1 and cnt > 0:
 		for i in range(len(initial_options)):
