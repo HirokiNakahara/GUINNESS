@@ -95,6 +95,7 @@ void bin_conv2d_pipeline(
     	SHIFT_REG: for( i = 0; i < 2 * ((IMGSIZ)+2) + 3; i++){
 #pragma HLS UNROLL
     		shift_reg1[ i] = shift_reg1[ i + 1];
+    		padding_shift_reg[ i] = padding_shift_reg[ i + 1];
     	}
     	ap_int<(MAX_BCONV_WIDTH)> din;
     	ap_uint<1> padding;
