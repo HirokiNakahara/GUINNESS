@@ -16,8 +16,8 @@ Python 3.5.1
 (Note that, my recommendation is to install by Anaconda 4.1.0 (64bit)+Pyenv,
  for Japanese Only, I prepared the Python 3.5 by following http://blog.algolab.jp/post/2016/08/21/pyenv-anaconda-ubuntu/)
 
-CUDA 8.0 (+GPU)
-(Note that, CUDA 9.0 is also supported)
+CUDA 8.0 (+GPU), CuDNN 6.0
+(Also, you must sign up the NVidia developer account)
 
 Chainer 1.24.0 + CuPy 2.0
 
