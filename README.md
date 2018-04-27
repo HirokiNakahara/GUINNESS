@@ -21,7 +21,7 @@ CUDA 8.0 (+GPU), CuDNN 6.0
 
 Chainer 1.24.0 + CuPy 2.0
 
-Xilinx Inc. SDSoC 2017.2 (2016.4 is also supported for the low-end FPGAs only)
+Xilinx Inc. SDSoC 2017.4
 
 FPGA board: Xilinx ZC702, ZC706, ZCU102, Digilent Zedboard, Zybo  
 (Soon, I will support Intel's FPGAs!, and the PYNQ board)  
@@ -70,6 +70,9 @@ PyQt4, matplotlib, OpenCV3, numpy, scipy,
  High performance image recognition (fully pipelined and SIMD CNNs)  
  
  Object detector on a low-cost FPGA (e.g., pedestrian detection)
+
+[![FPGA YOLOv2](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=_iMboyu8iWc&t=5s)
+
 
  If you are interesting the extended one, please, contact me.
 
