@@ -71,10 +71,12 @@ PyQt4, matplotlib, OpenCV3, numpy, scipy,
  
  Object detector on a low-cost FPGA (e.g., pedestrian detection)
 
-FPGA YOLOv2
+FPGA YOLOv2 (ZCU102 board)
+
 [![FPGA YOLOv2 ON YOUTUBE](http://img.youtube.com/vi/_iMboyu8iWc/0.jpg)](https://www.youtube.com/watch?v=_iMboyu8iWc&t=5s)
 
-Pedestrian Detector
+Pedestrian Detector (Zedboard)
+
 [![Pedestrian Detector ON YOUTUBE](http://img.youtube.com/vi/X82PVBuAuuo/0.jpg)](https://www.youtube.com/watch?v=X82PVBuAuuo&list=FLIIfj2LoI2TVWF5wQkZHiHg)
 
 
