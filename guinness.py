@@ -228,7 +228,7 @@ class Layout(QtGui.QWidget):
         self.combo2 = QtGui.QComboBox()
         self.combo2.addItem("zed")
         self.combo2.addItem("zybo")
-        self.combo2.addItem("vc702")
+        self.combo2.addItem("zc702")
         self.combo2.addItem("zcu102")
         hbox3 = QtGui.QHBoxLayout()
         hbox3.addWidget(fpgaboard)
