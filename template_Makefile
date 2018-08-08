@@ -1,4 +1,4 @@
-APPSOURCES = (CNN_C_SOURCE) 
+APPSOURCES = (CNN_C_SOURCE)
 EXECUTABLE = (ELF_FILE_PATH)
 
 PLATFORM = (TARGET_BOARD)
@@ -20,7 +20,7 @@ DEPS := $(OBJECTS:.o=.d)
 all: ${EXECUTABLE}
 
 ${EXECUTABLE}: ${OBJECTS}
-	${CC} ${LFLAGS} ${OBJECTS} -o $@ 
+	${CC} ${LFLAGS} ${OBJECTS} -o $@
 
 -include ${DEPS}
 
@@ -31,5 +31,5 @@ clean:
 	${RM} ${EXECUTABLE} ${OBJECTS} ${DEPS}
 
 ultraclean: clean
-	${RM} ${EXECUTABLE}.bit 
+	${RM} ${EXECUTABLE}.bit
 	${RM} -rf _sds sd_card

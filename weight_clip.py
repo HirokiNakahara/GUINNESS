@@ -26,8 +26,8 @@ class WeightClip(object):
     def __call__(self, opt):
         if cuda.available:
             kernel = cuda.elementwise(
-                'T low, T high', 
-                'T p', 
+                'T low, T high',
+                'T p',
                 'p = (p < low) ? low : (p > high) ? high : p',
                 'weight_clip')
 

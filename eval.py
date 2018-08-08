@@ -12,13 +12,12 @@
 #
 # Chainer binarized neural network by Daisuke Okanohara
 # https://github.com/hillbig/binary_net
-# Various CNN models including Deep Residual Networks (ResNet) 
+# Various CNN models including Deep Residual Networks (ResNet)
 #  for CIFAR10 with Chainer by mitmul
 # https://github.com/mitmul/chainer-cifar10
 # -----------------------------------------------------------------------
 
 import argparse
-#import cPickle as pickle # python 2.7
 import _pickle as pickle # python 3.5
 import numpy as np
 import os
@@ -126,12 +125,8 @@ if __name__ == '__main__':
         if test_y[idx] == result.data.argmax():
             n_acc = n_acc + 1
 
-    # show a confusion matrix    
+    # show a confusion matrix
     print("Confusion Matrix")
     print(conf_matrix.astype(np.int32))
     print("# corrests=%d" % n_acc)
     print("Accuracy=%f" % (float(n_acc) / n_tests))
-
-# -----------------------------------------------------------------------
-# END OF PROGRAM
-# -----------------------------------------------------------------------

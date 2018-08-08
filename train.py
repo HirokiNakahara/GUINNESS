@@ -12,7 +12,7 @@
 #
 # Chainer binarized neural network by Daisuke Okanohara
 # https://github.com/hillbig/binary_net
-# Various CNN models including Deep Residual Networks (ResNet) 
+# Various CNN models including Deep Residual Networks (ResNet)
 #  for CIFAR10 with Chainer by mitmul
 # https://github.com/mitmul/chainer-cifar10
 # -----------------------------------------------------------------------
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     np.random.seed(args.seed)
-    
+
     log_file_path = '{}_log.csv'.format(args.prefix)
 #    lr_decay_iter = map(int, args.lr_decay_iter.split(','))
 
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     with open(args.dataset, 'rb') as f:
         images = pickle.load(f)
 
-        index = np.random.permutation(len(images['train']))        
+        index = np.random.permutation(len(images['train']))
         threshold = np.int32(len(images['train'])/10*9)
         train_index = index[:threshold]
         valid_index = index[threshold:]
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         valid_x = images['train'][valid_index].astype(np.float32)
         test_x = images['test'].astype(np.float32)
 
-    
+
     print("[INFO] #TRAIN DATA: %7d" % len(train_x))
     print("[INFO] #VALID DATA: %7d" % len(valid_x))
     print("[INFO] #TEST  DATA: %7d" % len(test_x))
@@ -190,7 +190,7 @@ if __name__ == '__main__':
         clock = time.clock()
         print('elapsed time: {}'.format(clock - state['clock']))
         state['clock'] = clock
-        
+
         with open(log_file_path, 'a') as f:
             f.write('{},{},{},{},{},{},{}\n'.format(epoch + 1, loss, error, valid_loss, valid_error, test_loss, test_error))
 
@@ -207,7 +207,3 @@ if __name__ == '__main__':
 
     with open("train_status.txt", 'w') as f:
         f.write("stop")
-
-# -----------------------------------------------------------------------
-# END OF PROGRAM
-# -----------------------------------------------------------------------

@@ -145,8 +145,8 @@ class Layout(QtGui.QWidget):
         self.td_label = QtGui.QLineEdit("image.pkl")
 
         hbox_td = QtGui.QHBoxLayout()
-        hbox_td.addWidget(tdlabel) 
-        hbox_td.addWidget(ld_button) 
+        hbox_td.addWidget(tdlabel)
+        hbox_td.addWidget(ld_button)
         hbox_td.addWidget(self.td_label)
         vbox_training.addLayout(hbox_td)
 
@@ -154,7 +154,7 @@ class Layout(QtGui.QWidget):
         tllabel = QtGui.QLabel('Training Label')
         ll_button = QtGui.QPushButton("Load")
         ll_button.clicked.connect(self.open_FileDialog_tl)
-        self.tl_label = QtGui.QLineEdit("label.pkl") 
+        self.tl_label = QtGui.QLineEdit("label.pkl")
 
         hbox_tl = QtGui.QHBoxLayout()
         hbox_tl.addWidget(tllabel) 
@@ -175,7 +175,7 @@ class Layout(QtGui.QWidget):
 
         # optimizer
         hbox3 = QtGui.QHBoxLayout()
-        cnntype = QtGui.QLabel('Optimizer')        
+        cnntype = QtGui.QLabel('Optimizer')
         self.b11=QtGui.QRadioButton("SGD")
         self.b11.setChecked(True)
         self.b12=QtGui.QRadioButton("Adam")
@@ -287,8 +287,8 @@ class Layout(QtGui.QWidget):
         for i in range(self.table.rowCount()):
             itm1 = self.table.cellWidget(i,0)
             itm2 = self.table.item(i,1)
-            itm3 = self.table.item(i,2) 
-            itm4 = self.table.item(i,3) 
+            itm3 = self.table.item(i,2)
+            itm4 = self.table.item(i,3)
             val1 = itm1.currentIndex()
             val2 = str(itm2.text())
             val3 = str(itm3.text())
@@ -355,8 +355,8 @@ class Layout(QtGui.QWidget):
         for i in range(self.table.rowCount()):
             itm1 = self.table.cellWidget(i,0)
             itm2 = self.table.item(i,1)
-            itm3 = self.table.item(i,2) 
-            itm4 = self.table.item(i,3) 
+            itm3 = self.table.item(i,2)
+            itm4 = self.table.item(i,3)
             val1 = int(itm2.text())
             val2 = int(itm3.text())
             val3 = int(itm4.text())
@@ -397,8 +397,8 @@ class Layout(QtGui.QWidget):
         for i in range(self.table.rowCount()):
             itm1 = self.table.cellWidget(i,0)
             itm2 = self.table.item(i,1)
-            itm3 = self.table.item(i,2) 
-            itm4 = self.table.item(i,3) 
+            itm3 = self.table.item(i,2)
+            itm4 = self.table.item(i,3)
             val1 = int(itm2.text())
             val2 = int(itm3.text())
             val3 = int(itm4.text())
@@ -585,8 +585,8 @@ class Layout(QtGui.QWidget):
         for i in range(self.table.rowCount()):
             itm1 = self.table.cellWidget(i,0)
             itm2 = self.table.item(i,1)
-            itm3 = self.table.item(i,2) 
-            itm4 = self.table.item(i,3) 
+            itm3 = self.table.item(i,2)
+            itm4 = self.table.item(i,3)
             val1 = str(itm2.text())
             val2 = str(itm3.text())
             val3 = str(itm4.text())
@@ -630,7 +630,7 @@ class Layout(QtGui.QWidget):
         config_file = "./" + self.projectEdit.text() + "/config.pickle"
         with open(config_file, mode='wb') as f:
             pickle.dump(config, f)
-       
+
     # -----------------------------------------------------------------------
     # Generate Bitstream
     # -----------------------------------------------------------------------
@@ -749,10 +749,10 @@ class Layout(QtGui.QWidget):
 
         with open(filename, mode='r') as f:
             lines2 = f.readlines()
-        
+
             for line in lines2:
                 key, val = line.split()
-                
+
                 if key == 'PROJECT_NAME:':
                     self.projectEdit.setText(val)
                 elif key == 'TRAINING_DATA:':
@@ -784,7 +784,7 @@ class Layout(QtGui.QWidget):
                         idx = 3
                     self.combo2.setCurrentIndex(idx)
                 else:
-                    pass        
+                    pass
 
         # Restore CNN Configuration Table
         config_file = "./" + self.projectEdit.text() + "/config.pickle"
@@ -834,9 +834,9 @@ class Layout(QtGui.QWidget):
         self.bstart.setText('Continue Training')
 
         # Restore Global Variables
-        global img_siz 
+        global img_siz
         img_siz = int(config['imgsiz'])
-        global n_class 
+        global n_class
         n_class = int(n_ou_fmaps[len(initial_options) - 1])
         
         print("[INFO] IMAGE SIZE %dx%d" % (img_siz,img_siz))
@@ -854,8 +854,8 @@ class Layout(QtGui.QWidget):
         fsiz = 0
         for index in range(self.table.rowCount()):
             itm0 = self.table.cellWidget(index,0)
-            itm3 = self.table.item(index,3) 
-            
+            itm3 = self.table.item(index,3)
+
             if index == 0:
                 fsiz = img_siz
                 tbl_item = QtGui.QTableWidgetItem(str(int(fsiz)))
@@ -901,8 +901,8 @@ class Layout(QtGui.QWidget):
 
         # check dimension and size
         with open(filename, 'rb') as f:
-            images = pickle.load(f)        
-        
+            images = pickle.load(f)
+
             print("[INFO] IMAGE SIZE %dx%d" % (images['train'].shape[3],images['train'].shape[3]))
 
             n_dim = images['train'].shape[1]
@@ -917,7 +917,7 @@ class Layout(QtGui.QWidget):
         # check dimension and size
         with open(filename, 'rb') as f:
             global n_class
-            labels = pickle.load(f)        
+            labels = pickle.load(f)
             label_set = labels['train'].astype(np.int8)
             max_idx = np.max(label_set) + 1 # includes '0' label
             print("[INFO] #CLASSES: %d" % max_idx)
@@ -1021,9 +1021,9 @@ class Canvas(FigureCanvas):
         self.ax.plot(range(0,len(self.train_acc)),np.ones(len(self.train_acc))*100.0 - self.train_acc,label='Accuracy(Train)',color="blue")
         self.ax.plot(range(0,len(self.test_acc)),np.ones(len(self.test_acc))*100.0 - self.test_acc,label='Accuracy(Test)',color="red")
 
-        self.ax.annotate('Accuracy(Test)', 
+        self.ax.annotate('Accuracy(Test)',
             xy=(xrange - 1, 100.0 - self.test_acc[len(self.test_acc) - 1]), xycoords='data',
-            xytext=(-100, -20), 
+            xytext=(-100, -20),
             textcoords='offset points',
             arrowprops=dict(arrowstyle="->")
             )
@@ -1038,9 +1038,9 @@ class Canvas(FigureCanvas):
         self.ax2.plot(range(0,len(self.train_loss)),self.train_loss,label='Loss(Train)',color="mediumslateblue")
         self.ax2.plot(range(0,len(self.test_loss)),self.test_loss,label='Loss(Test)',color="hotpink")
 
-        self.ax2.annotate('Loss(Test)', 
+        self.ax2.annotate('Loss(Test)',
             xy=(xrange - 1, self.test_loss[len(self.test_loss) - 1]), xycoords='data',
-            xytext=(-80, 20), 
+            xytext=(-80, 20),
             textcoords='offset points',
             arrowprops=dict(arrowstyle="->")
             )
@@ -1067,7 +1067,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-###########################################################################################
-# END OF PROGRAM
-###########################################################################################
