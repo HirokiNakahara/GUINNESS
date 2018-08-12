@@ -20,15 +20,15 @@
 #endif
 
 // custom bitwidth for streaming operation
-typedef ap_int<2>    bit_2;
-typedef ap_int<4>    bit_4;
-typedef ap_int<8>    bit_8;
-typedef ap_int<16>   bit_16;
-typedef ap_int<32>   bit_32;
-typedef ap_int<64>   bit_64;
-typedef ap_int<128>  bit_128;
-typedef ap_int<256>  bit_256;
-typedef ap_int<512>  bit_512;
+typedef ap_int<2>   bit_2;
+typedef ap_int<4>   bit_4;
+typedef ap_int<8>   bit_8;
+typedef ap_int<16>  bit_16;
+typedef ap_int<32>  bit_32;
+typedef ap_int<64>  bit_64;
+typedef ap_int<128> bit_128;
+typedef ap_int<256> bit_256;
+typedef ap_int<512> bit_512;
 
 // weight memory -----------------------------------------------------
 (DEF_WEIGHT_MEM)
@@ -318,7 +318,7 @@ void int_conv2d_layer(
     ap_int<20> BNFb[NUM_OFEAT]
 )
 {
-    int_conv2d_pipeline< BIN_TYPE, BOUT_TYPE, NUM_IFEAT, NUM_OFEAT, INFEAT_SIZ, OFEAT_SIZ>(infmap, outfmap, W, BNFb);
+    int_conv2d_pipeline<BIN_TYPE, BOUT_TYPE, NUM_IFEAT, NUM_OFEAT, INFEAT_SIZ, OFEAT_SIZ>(infmap, outfmap, W, BNFb);
 }
 
 // -------------------------------------------------------------------
