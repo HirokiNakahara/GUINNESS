@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
                 tmp = tmp << 20;
 
                 pixel = d_value;
-                tmp |= (pixel & 0xFFFFF);
+                tmp |= (ap_int<64>)(pixel & 0xFFFFF);
             }
             t_tmp_img[y * (IMGSIZ) + x] = tmp;
         }

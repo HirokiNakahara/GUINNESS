@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
                 for (rgb = 0; rgb < (NUMIMG); rgb++) {
                     tmp = tmp << 20;
 
-                    tmp |= (buf[y * (IMGSIZ) * 3 + x * 3 + rgb] & 0xFFFFF);
+                    tmp |= (ap_int<64>)(buf[y * (IMGSIZ) * 3 + x * 3 + rgb] & 0xFFFFF);
                 }
                 t_tmp_img[y * (IMGSIZ) + x] = tmp;
             }
