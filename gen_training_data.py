@@ -1,40 +1,80 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -----------------------------------------------------------------------
 # gen_training_data.py:
 # Training File Generator for prepared image files
 #
 # Creation Date   : 04/Aug./2017
 # Copyright (C) <2017> Hiroki Nakahara, All rights reserved.
-# 
+#
 # Released under the GPL v2.0 License.
-# 
+#
 # -----------------------------------------------------------------------
 
+import argparse
 import numpy as np
 import glob
-import cv2
-import _pickle as pickle # python 3.5
-import argparse
 import random
-from scipy import ndimage
+import cv2
 import sys
+from scipy import ndimage
+import _pickle as pickle # python 3.5
 
-parser = argparse.ArgumentParser(description='training dataset generator')
-parser.add_argument('--pathfile', '-p', type=str, default='./imglist.txt',
-                        help='Image File List (test file)')
-parser.add_argument('--dataset', '-d', type=str, default='./hoge',
-                        help='Pickle object for dataset output file name')
-parser.add_argument('--size', '-s', type=int, default=32,
-                        help='dataset size (default 32x32)')
+parser = argparse.ArgumentParser(
+    description = "training dataset generator"
+)
+parser.add_argument(
+    '--pathfile',
+    '-p',
+    type = str,
+    default = './list.txt',
+    help = "image file list (test file)"
+)
+parser.add_argument(
+    '--dataset',
+    '-d',
+    type = str,
+    default = './none',
+    help = "pickle object for dataset output file name"
+)
+parser.add_argument(
+    '--size',
+    '-s',
+    type = int,
+    default = 32,
+    help = "dataset size (default 32x32)"
+)
 
 # options for argumentation
-parser.add_argument('--rotate', '-r', type=int, default=1,
-                        help='Rotate')
-parser.add_argument('--flip', '-f', type=str, default='no',
-                        help='Flip')
-parser.add_argument('--crop', '-c', type=int, default=1,
-                        help='Crop')
-parser.add_argument('--keepaspect', '-k', type=str, default='no',
-                        help='Keep aspect ratio (default no)')
+parser.add_argument(
+    '--rotate',
+    '-r',
+    type = int,
+    default = 1,
+    help = "rotate"
+)
+parser.add_argument(
+    '--flip',
+    '-f',
+    type = str,
+    default = 'no',
+    help = "flip"
+)
+parser.add_argument(
+    '--crop',
+    '-c',
+    type = int,
+    default = 1,
+    help = "crop"
+)
+parser.add_argument(
+    '--keepaspect',
+    '-k',
+    type = str,
+    default = 'no',
+    help = "keep aspect ratio (default no)"
+)
 
 args = parser.parse_args()
 
@@ -42,25 +82,24 @@ dataset_fname = args.dataset + '_dataset.pkl'
 label_fname = args.dataset + '_label.pkl'
 tag_fname = args.dataset + '_tag.txt'
 
-
 print("[INFO] IMAGE PATH FILE %s" % args.pathfile)
 print("[INFO] DATASET FILE %s" % dataset_fname)
 print("[INFO] LABEL FILE %s" % label_fname)
 print("[INFO] TAG FILE %s" % tag_fname)
 
-print("[INFO] DATASET SIZE %dx%d" % (int(args.size),int(args.size)))
+print("[INFO] DATASET SIZE %dx%d" % (int(args.size), int(args.size)))
 print("[INFO] ROTATION %s" % args.rotate)
 print("[INFO] FLIPPING %s" % args.flip)
 print("[INFO] CROPPING %s" % args.crop)
 print("[INFO] KEEP ASPECT RATIO %s" % args.keepaspect)
 
-with open(args.pathfile, mode='r') as f:
-    lines2 = f.readlines()
- 
+with open(args.pathfile, mode = 'r') as f:
+    lines = f.readlines()
+
 pathsAndLabels = []
 label_idx = 0
 tags = []
-for line in lines2:
+for line in lines:
     words = line.split()
     tags.append(words[1])
     choped_line = words[0].rstrip('\n\r') + '/'
@@ -99,13 +138,13 @@ else:
     n_flip = 1
 
 # register all images, and normalization if needs,,,
-imageData = np.zeros((len(allData)*n_crop*n_rotate*n_flip,3,width,height))
-labelData = np.zeros(len(allData)*n_crop*n_rotate*n_flip)
+imageData = np.zeros((len(allData) * n_crop * n_rotate * n_flip, 3, width, height))
+labelData = np.zeros(len(allData) * n_crop * n_rotate * n_flip)
 
 idx = 0
 for pathAndLabel in allData:
-    sys.stderr.write('\r\033[K' + "CONVERTING IMAGE %d/%d" % (idx,len(allData)*n_crop*n_rotate*n_flip))
-    sys.stderr.flush()
+    sys.stdout.write("\r\033[0K" + "CONVERTING IMAGE %d/%d" % (idx + 1, len(allData) * n_crop * n_rotate * n_flip))
+    sys.stdout.flush()
 
     org_img = cv2.imread(pathAndLabel[0])
 
@@ -122,13 +161,13 @@ for pathAndLabel in allData:
                     h, w = org_img.shape[:2]
 
                     if h > w:
-                        dst_img = np.zeros((h,h,3)).astype(np.uint8) #* 128
-                        d = int((h-w)/2)
-                        dst_img[0:h,d:d+w] = org_img[:,:]
+                        dst_img = np.zeros((h, h, 3)).astype(np.uint8) #* 128
+                        d = int((h - w) / 2)
+                        dst_img[0:h, d:d+w] = org_img[:, :]
                     else:
-                        dst_img = np.zeros((w,w,3)).astype(np.uint8) #* 128
-                        d = int((w-h)/2)
-                        dst_img[d:d+h,0:w] = org_img[:,:]
+                        dst_img = np.zeros((w, w, 3)).astype(np.uint8) #* 128
+                        d = int((w - h) / 2)
+                        dst_img[d:d+h, 0:w] = org_img[:, :]
 
                     org_img = dst_img
 
@@ -139,44 +178,43 @@ for pathAndLabel in allData:
                     if args.keepaspect == 'no':
                         h4 = h / 4
                         w4 = w / 4
-                        left = random.randint(0,w4)
-                        right = random.randint(w-w4,w)
-                        top = random.randint(0,h4)
-                        bottom = random.randint(h - h4,h)
+                        left = random.randint(0, w4)
+                        right = random.randint(w - w4, w)
+                        top = random.randint(0, h4)
+                        bottom = random.randint(h - h4, h)
 
-                        img = org_img[top:bottom,left:right] # y:y+h,x:x+h
+                        img = org_img[top:bottom, left:right] # y:y+h,x:x+h
                     else:
-                        rows,cols = org_img.shape[:2]
+                        rows, cols = org_img.shape[:2]
 
                         # resize with cropping
-                        dd = random.randint(0,rows/8)
-                        org_img = org_img[dd:rows-dd,dd:cols-dd]
+                        dd = random.randint(0, rows / 8)
+                        org_img = org_img[dd:rows-dd, dd:cols-dd]
                         rows = rows - dd
                         cols = cols - dd
 
                         # sliding
                         h4 = rows / 4
                         w4 = cols / 4
-                        dw = random.randint(w4*(-1),w4)
-                        dh = random.randint(h4*(-1),h4)
-                        M = np.float32([[1,0,dw],[0,1,dh]])
-                        img = cv2.warpAffine(org_img,M,(cols,rows))
+                        dw = random.randint(w4 * (-1), w4)
+                        dh = random.randint(h4 * (-1), h4)
+                        M = np.float32([[1, 0, dw], [0, 1, dh]])
+                        img = cv2.warpAffine(org_img, M, (cols, rows))
 
                 else:
                     img = org_img
 
-
-                #flipping (if rotate, then flipping is also applied)
+                # flipping (if rotate, then flipping is also applied)
                 if k == 0:
                     pass
                 else:
                     img = cv2.flip(img, 1)
 
                 # rotation
-                img = ndimage.rotate( img, 2 * j, reshape=False)
+                img = ndimage.rotate(img, 2 * j, reshape = False)
 
                 # Resize
-                img = cv2.resize(img,(width,height))
+                img = cv2.resize(img, (width, height))
 
                 # Transpose for Chainer dataset
                 reshaped = img.transpose(2, 0, 1) # (Y,X,BGR) -> (BGR,Y,X)
@@ -187,10 +225,13 @@ for pathAndLabel in allData:
 
                 idx = idx + 1
 
+sys.stdout.write("\n")
+sys.stdout.flush()
+
 imageData = imageData.astype(np.uint8)
 
 # generate pickle file
-threshold = np.int32(len(imageData)/10*9)
+threshold = np.int32(len(imageData) / 10 * 9)
 
 image = {}
 label = {}
@@ -200,9 +241,9 @@ label['train'] = labelData[0:threshold]
 label['test'] = labelData[threshold:]
 
 print("[INFO] SAVE %s as an image dataset" % dataset_fname)
-with open(dataset_fname, mode='wb') as f:
+with open(dataset_fname, mode = 'wb') as f:
     pickle.dump(image, f)
 
 print("[INFO] SAVE %s as a label dataset" % label_fname)
-with open(label_fname, mode='wb') as f:
+with open(label_fname, mode = 'wb') as f:
     pickle.dump(label, f)
