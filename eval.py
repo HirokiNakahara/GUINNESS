@@ -62,6 +62,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '--size',
+        '-s',
         type = int,
         default = 32,
         help = "Test Image Size"
