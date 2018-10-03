@@ -140,11 +140,6 @@ if __name__ == '__main__':
         print(result.data)
         print("[%d/%d] label/result = %s/%s" % (idx + 1, n_tests, name[test_y[idx]], name[result.data.argmax()]))
 
-        # show test image
-        if args.view == 'yes':
-            cv2.imshow("Test Image", image1)
-            cv2.waitKey(0)
-
         # regist a confusion matrix
         conf_matrix[test_y[idx], result.data.argmax()] = conf_matrix[test_y[idx], result.data.argmax()] + 1
 
@@ -152,6 +147,11 @@ if __name__ == '__main__':
             n_acc = n_acc + 1
         else:
             print("[%d/%d] Unmatch!" % (idx + 1, n_tests))
+
+        # show test image
+        if args.view == 'yes':
+            cv2.imshow("Test Image", image1)
+            cv2.waitKey(0)
 
     if args.view == 'yes':
         cv2.destroyAllWindows()
