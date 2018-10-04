@@ -150,5 +150,6 @@ pip-selfcheck.json
 net2.py
 temp.model
 temp.state
+temp_log.csv
 test_img.txt
 train_status.txt
