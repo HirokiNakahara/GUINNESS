@@ -778,7 +778,7 @@ class Layout(QtGui.QWidget):
                         idx = 0
                     elif val == 'zybo':
                         idx = 1
-                    elif val == 'vc702':
+                    elif val == 'zc702':
                         idx = 2
                     else: # zcu102
                         idx = 3
