@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     for (y = 0; y < (IMGSIZ); y++) {
         for (x = 0; x < (IMGSIZ); x++) {
             ap_int<64> tmp = 0;
-            for (rgb = (NUMIMG) - 1; rgb >= 0 ; rgb--) {
+            for (rgb = (NUMIMG) - 1; rgb >= 0; rgb--) {
                 if (fgets(line, 256, fp) == NULL) {
                     fprintf(stderr, "EMPTY FILE READ\n");
                 }
