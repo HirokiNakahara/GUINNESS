@@ -89,7 +89,7 @@ class Layout(QtGui.QWidget):
         vbox_left_column.addWidget(project_setup_box)
 
         # cnn setup table ------------------------------------------------
-        cnn_setup_box = QtGui.QGroupBox("2. CNN Specificaion")
+        cnn_setup_box = QtGui.QGroupBox("2. CNN Specification")
 
         vbox_cnn = QtGui.QVBoxLayout()
 
@@ -163,7 +163,7 @@ class Layout(QtGui.QWidget):
         vbox_training.addLayout(hbox_tl)
 
         # # of training
-        n_trains = QtGui.QLabel('Number of traning')
+        n_trains = QtGui.QLabel('Number of Training')
         self.n_trains_Edit = QtGui.QLineEdit()
         self.n_trains_Edit.setText("10")
 
@@ -778,7 +778,7 @@ class Layout(QtGui.QWidget):
                         idx = 0
                     elif val == 'zybo':
                         idx = 1
-                    elif val == 'vc702':
+                    elif val == 'zc702':
                         idx = 2
                     else: # zcu102
                         idx = 3
